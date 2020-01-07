@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+      <p class="invalid" *ngIf="invalid">Invalid Credentials.Please Register</p>
+      <p class="invalid" *ngIf="invalidpwd">Invalid Password.</p>
+    <form class="example-form" [formGroup]="form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="EmailId" name="email" type="email" formControlName="email" required>
+            <mat-error *ngIf="form.controls.email?.errors?.required">EmailId  is required</mat-error>
+            <mat-error *ngIf="form.controls.email?.value && form.controls.email?.invalid">Please enter valid email Id</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+        <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password" name="password" formControlName="password" required>
+          <mat-error *ngIf="form.controls.password?.errors?.required">Password  is required</mat-error>
+        </mat-form-field></td>
+      </tr></table>
+      <button mat-raised-button (click)="login()" color="primary" type="submit" [disabled]="!form.valid">Login</button>
+      <a class="registerlink" routerLink="/register">Register</a>
+    </form>
+  </mat-card-content>
+</mat-card>
+<div class="loading" *ngIf="loading">Loading...</div>
